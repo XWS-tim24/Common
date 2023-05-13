@@ -1,4 +1,4 @@
-module common
+module github.com/XWS-tim24/Common/common
 
 go 1.20
 
