@@ -110,9 +110,8 @@ message AvailableDateDTO {
         google.protobuf.Timestamp endDate = 4;
         uint32 price = 5;
        enum PricingType{
-                Pending = 0;
-                Accepted = 1;
-                Denied = 2;
+                Per_Guest = 0;
+                Per_Accommodation = 1;
         }
         PricingType pricingType = 6;
 }
