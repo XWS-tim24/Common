@@ -1,17 +1,17 @@
-module github.com/XWS-tim24/Common/common
+module common
 
-go 1.17
+go 1.20
 
 require (
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.9.0
-	google.golang.org/genproto v0.0.0-20220314164441-57ef72a4c106
-	google.golang.org/grpc v1.45.0
-	google.golang.org/protobuf v1.27.1
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2
+	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1
+	google.golang.org/grpc v1.55.0
+	google.golang.org/protobuf v1.30.0
 )
 
 require (
-	github.com/golang/protobuf v1.5.2 // indirect
-	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
-	golang.org/x/sys v0.0.0-20220111092808-5a964db01320 // indirect
-	golang.org/x/text v0.3.7 // indirect
+	github.com/golang/protobuf v1.5.3 // indirect
+	golang.org/x/net v0.8.0 // indirect
+	golang.org/x/sys v0.6.0 // indirect
+	golang.org/x/text v0.8.0 // indirect
 )
