@@ -4,7 +4,7 @@
 // - protoc             v4.23.0
 // source: accommodation_service/accommodation_service.proto
 
-package accommodation
+package accommodation_service
 
 import (
 	context "context"
@@ -40,7 +40,7 @@ func NewAccommodationServiceClient(cc grpc.ClientConnInterface) AccommodationSer
 
 func (c *accommodationServiceClient) CreateAcc(ctx context.Context, in *CreateAccommodationRequest, opts ...grpc.CallOption) (*CreateAccommodationResponse, error) {
 	out := new(CreateAccommodationResponse)
-	err := c.cc.Invoke(ctx, "/accommodation.AccommodationService/CreateAcc", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_service.AccommodationService/CreateAcc", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +49,7 @@ func (c *accommodationServiceClient) CreateAcc(ctx context.Context, in *CreateAc
 
 func (c *accommodationServiceClient) GetAccommodationById(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*CreateAccommodationResponse, error) {
 	out := new(CreateAccommodationResponse)
-	err := c.cc.Invoke(ctx, "/accommodation.AccommodationService/GetAccommodationById", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_service.AccommodationService/GetAccommodationById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func (c *accommodationServiceClient) GetAccommodationById(ctx context.Context, i
 
 func (c *accommodationServiceClient) SearchAccommodations(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
 	out := new(SearchResponse)
-	err := c.cc.Invoke(ctx, "/accommodation.AccommodationService/SearchAccommodations", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_service.AccommodationService/SearchAccommodations", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +67,7 @@ func (c *accommodationServiceClient) SearchAccommodations(ctx context.Context, i
 
 func (c *accommodationServiceClient) CreateAvailableDate(ctx context.Context, in *CreateAvailableDateRequest, opts ...grpc.CallOption) (*CreateAvailableDateResponse, error) {
 	out := new(CreateAvailableDateResponse)
-	err := c.cc.Invoke(ctx, "/accommodation.AccommodationService/CreateAvailableDate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_service.AccommodationService/CreateAvailableDate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ func (c *accommodationServiceClient) CreateAvailableDate(ctx context.Context, in
 
 func (c *accommodationServiceClient) GetAvailableDateById(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*CreateAvailableDateResponse, error) {
 	out := new(CreateAvailableDateResponse)
-	err := c.cc.Invoke(ctx, "/accommodation.AccommodationService/GetAvailableDateById", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_service.AccommodationService/GetAvailableDateById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +85,7 @@ func (c *accommodationServiceClient) GetAvailableDateById(ctx context.Context, i
 
 func (c *accommodationServiceClient) UpdateAvailableDate(ctx context.Context, in *UpdateAvailableDateRequest, opts ...grpc.CallOption) (*UpdateAvailableDateResponse, error) {
 	out := new(UpdateAvailableDateResponse)
-	err := c.cc.Invoke(ctx, "/accommodation.AccommodationService/UpdateAvailableDate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_service.AccommodationService/UpdateAvailableDate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func _AccommodationService_CreateAcc_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation.AccommodationService/CreateAcc",
+		FullMethod: "/accommodation_service.AccommodationService/CreateAcc",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationServiceServer).CreateAcc(ctx, req.(*CreateAccommodationRequest))
@@ -168,7 +168,7 @@ func _AccommodationService_GetAccommodationById_Handler(srv interface{}, ctx con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation.AccommodationService/GetAccommodationById",
+		FullMethod: "/accommodation_service.AccommodationService/GetAccommodationById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationServiceServer).GetAccommodationById(ctx, req.(*GetByIdRequest))
@@ -186,7 +186,7 @@ func _AccommodationService_SearchAccommodations_Handler(srv interface{}, ctx con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation.AccommodationService/SearchAccommodations",
+		FullMethod: "/accommodation_service.AccommodationService/SearchAccommodations",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationServiceServer).SearchAccommodations(ctx, req.(*SearchRequest))
@@ -204,7 +204,7 @@ func _AccommodationService_CreateAvailableDate_Handler(srv interface{}, ctx cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation.AccommodationService/CreateAvailableDate",
+		FullMethod: "/accommodation_service.AccommodationService/CreateAvailableDate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationServiceServer).CreateAvailableDate(ctx, req.(*CreateAvailableDateRequest))
@@ -222,7 +222,7 @@ func _AccommodationService_GetAvailableDateById_Handler(srv interface{}, ctx con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation.AccommodationService/GetAvailableDateById",
+		FullMethod: "/accommodation_service.AccommodationService/GetAvailableDateById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationServiceServer).GetAvailableDateById(ctx, req.(*GetByIdRequest))
@@ -240,7 +240,7 @@ func _AccommodationService_UpdateAvailableDate_Handler(srv interface{}, ctx cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation.AccommodationService/UpdateAvailableDate",
+		FullMethod: "/accommodation_service.AccommodationService/UpdateAvailableDate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationServiceServer).UpdateAvailableDate(ctx, req.(*UpdateAvailableDateRequest))
@@ -252,7 +252,7 @@ func _AccommodationService_UpdateAvailableDate_Handler(srv interface{}, ctx cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AccommodationService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "accommodation.AccommodationService",
+	ServiceName: "accommodation_service.AccommodationService",
 	HandlerType: (*AccommodationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

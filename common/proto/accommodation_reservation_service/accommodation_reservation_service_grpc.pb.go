@@ -4,7 +4,7 @@
 // - protoc             v4.23.0
 // source: accommodation_reservation_service/accommodation_reservation_service.proto
 
-package accommodation_reservation
+package accommodation_reservation_service
 
 import (
 	context "context"
@@ -41,7 +41,7 @@ func NewAccommodationReservationServiceClient(cc grpc.ClientConnInterface) Accom
 
 func (c *accommodationReservationServiceClient) GetRequestById(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*GetByIdResponse, error) {
 	out := new(GetByIdResponse)
-	err := c.cc.Invoke(ctx, "/accommodation_reservation.AccommodationReservationService/GetRequestById", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/GetRequestById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +50,7 @@ func (c *accommodationReservationServiceClient) GetRequestById(ctx context.Conte
 
 func (c *accommodationReservationServiceClient) GetAllPendingForUser(ctx context.Context, in *GetByUserIdRequest, opts ...grpc.CallOption) (*GetAllPendingForUserResponse, error) {
 	out := new(GetAllPendingForUserResponse)
-	err := c.cc.Invoke(ctx, "/accommodation_reservation.AccommodationReservationService/GetAllPendingForUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/GetAllPendingForUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func (c *accommodationReservationServiceClient) GetAllPendingForUser(ctx context
 
 func (c *accommodationReservationServiceClient) GetAllPendingForAccomodation(ctx context.Context, in *GetAllPendingForAccRequest, opts ...grpc.CallOption) (*GetAllPendingForAccResponse, error) {
 	out := new(GetAllPendingForAccResponse)
-	err := c.cc.Invoke(ctx, "/accommodation_reservation.AccommodationReservationService/GetAllPendingForAccomodation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/GetAllPendingForAccomodation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,7 +68,7 @@ func (c *accommodationReservationServiceClient) GetAllPendingForAccomodation(ctx
 
 func (c *accommodationReservationServiceClient) GetReservationById(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*GetReservationByIdResponse, error) {
 	out := new(GetReservationByIdResponse)
-	err := c.cc.Invoke(ctx, "/accommodation_reservation.AccommodationReservationService/GetReservationById", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/GetReservationById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ func (c *accommodationReservationServiceClient) GetReservationById(ctx context.C
 
 func (c *accommodationReservationServiceClient) GetNumberOfCanceled(ctx context.Context, in *GetByUserIdRequest, opts ...grpc.CallOption) (*GetIntResponse, error) {
 	out := new(GetIntResponse)
-	err := c.cc.Invoke(ctx, "/accommodation_reservation.AccommodationReservationService/GetNumberOfCanceled", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/GetNumberOfCanceled", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,7 +86,7 @@ func (c *accommodationReservationServiceClient) GetNumberOfCanceled(ctx context.
 
 func (c *accommodationReservationServiceClient) CreateReservation(ctx context.Context, in *CreateReservationRequest, opts ...grpc.CallOption) (*CreateReservationResponse, error) {
 	out := new(CreateReservationResponse)
-	err := c.cc.Invoke(ctx, "/accommodation_reservation.AccommodationReservationService/CreateReservation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/CreateReservation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -95,7 +95,7 @@ func (c *accommodationReservationServiceClient) CreateReservation(ctx context.Co
 
 func (c *accommodationReservationServiceClient) CreateRequest(ctx context.Context, in *CreateReservationRequestRequest, opts ...grpc.CallOption) (*CreateReservationRequestResponse, error) {
 	out := new(CreateReservationRequestResponse)
-	err := c.cc.Invoke(ctx, "/accommodation_reservation.AccommodationReservationService/CreateRequest", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/CreateRequest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -165,7 +165,7 @@ func _AccommodationReservationService_GetRequestById_Handler(srv interface{}, ct
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation_reservation.AccommodationReservationService/GetRequestById",
+		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/GetRequestById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationReservationServiceServer).GetRequestById(ctx, req.(*GetByIdRequest))
@@ -183,7 +183,7 @@ func _AccommodationReservationService_GetAllPendingForUser_Handler(srv interface
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation_reservation.AccommodationReservationService/GetAllPendingForUser",
+		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/GetAllPendingForUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationReservationServiceServer).GetAllPendingForUser(ctx, req.(*GetByUserIdRequest))
@@ -201,7 +201,7 @@ func _AccommodationReservationService_GetAllPendingForAccomodation_Handler(srv i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation_reservation.AccommodationReservationService/GetAllPendingForAccomodation",
+		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/GetAllPendingForAccomodation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationReservationServiceServer).GetAllPendingForAccomodation(ctx, req.(*GetAllPendingForAccRequest))
@@ -219,7 +219,7 @@ func _AccommodationReservationService_GetReservationById_Handler(srv interface{}
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation_reservation.AccommodationReservationService/GetReservationById",
+		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/GetReservationById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationReservationServiceServer).GetReservationById(ctx, req.(*GetByIdRequest))
@@ -237,7 +237,7 @@ func _AccommodationReservationService_GetNumberOfCanceled_Handler(srv interface{
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation_reservation.AccommodationReservationService/GetNumberOfCanceled",
+		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/GetNumberOfCanceled",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationReservationServiceServer).GetNumberOfCanceled(ctx, req.(*GetByUserIdRequest))
@@ -255,7 +255,7 @@ func _AccommodationReservationService_CreateReservation_Handler(srv interface{},
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation_reservation.AccommodationReservationService/CreateReservation",
+		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/CreateReservation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationReservationServiceServer).CreateReservation(ctx, req.(*CreateReservationRequest))
@@ -273,7 +273,7 @@ func _AccommodationReservationService_CreateRequest_Handler(srv interface{}, ctx
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/accommodation_reservation.AccommodationReservationService/CreateRequest",
+		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/CreateRequest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccommodationReservationServiceServer).CreateRequest(ctx, req.(*CreateReservationRequestRequest))
@@ -285,7 +285,7 @@ func _AccommodationReservationService_CreateRequest_Handler(srv interface{}, ctx
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AccommodationReservationService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "accommodation_reservation.AccommodationReservationService",
+	ServiceName: "accommodation_reservation_service.AccommodationReservationService",
 	HandlerType: (*AccommodationReservationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

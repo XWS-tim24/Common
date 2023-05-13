@@ -2,11 +2,11 @@
 // source: accommodation_reservation_service/accommodation_reservation_service.proto
 
 /*
-Package accommodation_reservation is a reverse proxy.
+Package accommodation_reservation_service is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package accommodation_reservation
+package accommodation_reservation_service
 
 import (
 	"context"
@@ -373,7 +373,7 @@ func RegisterAccommodationReservationServiceHandlerServer(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/GetRequestById", runtime.WithHTTPPathPattern("/reservationRequests/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/GetRequestById", runtime.WithHTTPPathPattern("/reservationRequests/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -398,7 +398,7 @@ func RegisterAccommodationReservationServiceHandlerServer(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/GetAllPendingForUser", runtime.WithHTTPPathPattern("/reservationRequests/pending/user/{userId}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/GetAllPendingForUser", runtime.WithHTTPPathPattern("/reservationRequests/pending/user/{userId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -423,7 +423,7 @@ func RegisterAccommodationReservationServiceHandlerServer(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/GetAllPendingForAccomodation", runtime.WithHTTPPathPattern("/reservationRequests/pending/accomodation/{accomodationId}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/GetAllPendingForAccomodation", runtime.WithHTTPPathPattern("/reservationRequests/pending/accomodation/{accomodationId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -448,7 +448,7 @@ func RegisterAccommodationReservationServiceHandlerServer(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/GetReservationById", runtime.WithHTTPPathPattern("/reservations/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/GetReservationById", runtime.WithHTTPPathPattern("/reservations/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -473,7 +473,7 @@ func RegisterAccommodationReservationServiceHandlerServer(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/GetNumberOfCanceled", runtime.WithHTTPPathPattern("/reservations/canceled/{userId}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/GetNumberOfCanceled", runtime.WithHTTPPathPattern("/reservations/canceled/{userId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -498,7 +498,7 @@ func RegisterAccommodationReservationServiceHandlerServer(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/CreateReservation", runtime.WithHTTPPathPattern("/reservations"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/CreateReservation", runtime.WithHTTPPathPattern("/reservations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -523,7 +523,7 @@ func RegisterAccommodationReservationServiceHandlerServer(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/CreateRequest", runtime.WithHTTPPathPattern("/reservationRequests"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/CreateRequest", runtime.WithHTTPPathPattern("/reservationRequests"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -587,7 +587,7 @@ func RegisterAccommodationReservationServiceHandlerClient(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/GetRequestById", runtime.WithHTTPPathPattern("/reservationRequests/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/GetRequestById", runtime.WithHTTPPathPattern("/reservationRequests/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -609,7 +609,7 @@ func RegisterAccommodationReservationServiceHandlerClient(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/GetAllPendingForUser", runtime.WithHTTPPathPattern("/reservationRequests/pending/user/{userId}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/GetAllPendingForUser", runtime.WithHTTPPathPattern("/reservationRequests/pending/user/{userId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -631,7 +631,7 @@ func RegisterAccommodationReservationServiceHandlerClient(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/GetAllPendingForAccomodation", runtime.WithHTTPPathPattern("/reservationRequests/pending/accomodation/{accomodationId}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/GetAllPendingForAccomodation", runtime.WithHTTPPathPattern("/reservationRequests/pending/accomodation/{accomodationId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -653,7 +653,7 @@ func RegisterAccommodationReservationServiceHandlerClient(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/GetReservationById", runtime.WithHTTPPathPattern("/reservations/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/GetReservationById", runtime.WithHTTPPathPattern("/reservations/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -675,7 +675,7 @@ func RegisterAccommodationReservationServiceHandlerClient(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/GetNumberOfCanceled", runtime.WithHTTPPathPattern("/reservations/canceled/{userId}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/GetNumberOfCanceled", runtime.WithHTTPPathPattern("/reservations/canceled/{userId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -697,7 +697,7 @@ func RegisterAccommodationReservationServiceHandlerClient(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/CreateReservation", runtime.WithHTTPPathPattern("/reservations"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/CreateReservation", runtime.WithHTTPPathPattern("/reservations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -719,7 +719,7 @@ func RegisterAccommodationReservationServiceHandlerClient(ctx context.Context, m
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation.AccommodationReservationService/CreateRequest", runtime.WithHTTPPathPattern("/reservationRequests"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_reservation_service.AccommodationReservationService/CreateRequest", runtime.WithHTTPPathPattern("/reservationRequests"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

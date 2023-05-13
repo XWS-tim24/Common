@@ -1,4 +1,4 @@
-module "github.com/XWS-tim24/Common/common/proto/accommodation_reservation_service"
+module github.com/XWS-tim24/Common/common
 
 go 1.17
 

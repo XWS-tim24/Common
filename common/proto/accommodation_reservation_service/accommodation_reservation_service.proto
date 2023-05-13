@@ -1,8 +1,7 @@
 syntax = "proto3";
 
-option go_package = "XWSProject/common/accommodation_reservation";
-
-package accommodation_reservation;
+option go_package = "github.com/XWS-tim24/Common/common/accommodation_reservation_service";
+package accommodation_reservation_service;
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
