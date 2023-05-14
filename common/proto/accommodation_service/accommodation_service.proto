@@ -106,6 +106,7 @@ message Accommodation {
         string benefits = 6;
         uint32 minGuests = 7;
         uint32 maxGuests = 8;
+        bool automaticAccept = 9;
 }
 
 message AvailableDate {
