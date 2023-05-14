@@ -45,8 +45,22 @@ service AccommodationService{
                         body: "availableDatedto"
 		};
         }
+
+        rpc TimeSlotAvailableForAccommodation(TimeSlotAvailableRequest) returns(TimeSlotAvailableResponse) {
+        	option (google.api.http) = {
+			put: "/availableDate/IsTimeSlotAvailable"
+                        body: "availableTimeSlotDTO"
+		};
+        }
         
       
+}
+
+message TimeSlotAvailableRequest{
+        AvailableTimeSlotDTO availableTimeSlotDTO = 1;
+}
+message TimeSlotAvailableResponse{
+        bool available = 1;
 }
 
 message CreateAccommodationRequest{
@@ -111,7 +125,7 @@ message AvailableDateDTO {
         google.protobuf.Timestamp startDate = 3;
         google.protobuf.Timestamp endDate = 4;
         uint32 price = 5;
-       enum PricingType{
+        enum PricingType{
                 Per_Guest = 0;
                 Per_Accommodation = 1;
         }
@@ -124,4 +138,12 @@ message AccommodationSearchDTO{
         uint32 guestNum = 2;
         google.protobuf.Timestamp startDate = 3;
         google.protobuf.Timestamp endDate = 4;
+}
+
+
+
+message AvailableTimeSlotDTO{
+        string accommodationId = 1;
+        google.protobuf.Timestamp startDate = 2;
+        google.protobuf.Timestamp endDate = 3;
 }

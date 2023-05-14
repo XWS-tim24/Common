@@ -28,6 +28,7 @@ type AccommodationServiceClient interface {
 	CreateAvailableDate(ctx context.Context, in *CreateAvailableDateRequest, opts ...grpc.CallOption) (*CreateAvailableDateResponse, error)
 	GetAvailableDateById(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*CreateAvailableDateResponse, error)
 	UpdateAvailableDate(ctx context.Context, in *UpdateAvailableDateRequest, opts ...grpc.CallOption) (*UpdateAvailableDateResponse, error)
+	TimeSlotAvailableForAccommodation(ctx context.Context, in *TimeSlotAvailableRequest, opts ...grpc.CallOption) (*TimeSlotAvailableResponse, error)
 }
 
 type accommodationServiceClient struct {
@@ -92,6 +93,15 @@ func (c *accommodationServiceClient) UpdateAvailableDate(ctx context.Context, in
 	return out, nil
 }
 
+func (c *accommodationServiceClient) TimeSlotAvailableForAccommodation(ctx context.Context, in *TimeSlotAvailableRequest, opts ...grpc.CallOption) (*TimeSlotAvailableResponse, error) {
+	out := new(TimeSlotAvailableResponse)
+	err := c.cc.Invoke(ctx, "/accommodation_service.AccommodationService/TimeSlotAvailableForAccommodation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccommodationServiceServer is the server API for AccommodationService service.
 // All implementations must embed UnimplementedAccommodationServiceServer
 // for forward compatibility
@@ -102,6 +112,7 @@ type AccommodationServiceServer interface {
 	CreateAvailableDate(context.Context, *CreateAvailableDateRequest) (*CreateAvailableDateResponse, error)
 	GetAvailableDateById(context.Context, *GetByIdRequest) (*CreateAvailableDateResponse, error)
 	UpdateAvailableDate(context.Context, *UpdateAvailableDateRequest) (*UpdateAvailableDateResponse, error)
+	TimeSlotAvailableForAccommodation(context.Context, *TimeSlotAvailableRequest) (*TimeSlotAvailableResponse, error)
 	mustEmbedUnimplementedAccommodationServiceServer()
 }
 
@@ -126,6 +137,9 @@ func (UnimplementedAccommodationServiceServer) GetAvailableDateById(context.Cont
 }
 func (UnimplementedAccommodationServiceServer) UpdateAvailableDate(context.Context, *UpdateAvailableDateRequest) (*UpdateAvailableDateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAvailableDate not implemented")
+}
+func (UnimplementedAccommodationServiceServer) TimeSlotAvailableForAccommodation(context.Context, *TimeSlotAvailableRequest) (*TimeSlotAvailableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TimeSlotAvailableForAccommodation not implemented")
 }
 func (UnimplementedAccommodationServiceServer) mustEmbedUnimplementedAccommodationServiceServer() {}
 
@@ -248,6 +262,24 @@ func _AccommodationService_UpdateAvailableDate_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccommodationService_TimeSlotAvailableForAccommodation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TimeSlotAvailableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccommodationServiceServer).TimeSlotAvailableForAccommodation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/accommodation_service.AccommodationService/TimeSlotAvailableForAccommodation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccommodationServiceServer).TimeSlotAvailableForAccommodation(ctx, req.(*TimeSlotAvailableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AccommodationService_ServiceDesc is the grpc.ServiceDesc for AccommodationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -278,6 +310,10 @@ var AccommodationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateAvailableDate",
 			Handler:    _AccommodationService_UpdateAvailableDate_Handler,
+		},
+		{
+			MethodName: "TimeSlotAvailableForAccommodation",
+			Handler:    _AccommodationService_TimeSlotAvailableForAccommodation_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
