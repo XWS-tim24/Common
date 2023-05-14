@@ -46,8 +46,28 @@ service AccommodationReservationService{
                 };
         }
 
+        rpc DeleteReservationRequest(GetByIdRequest) returns(ReservationRequestResponse) {
+        	option (google.api.http) = {
+			put: "/reservationRequests/delete/{id}"
+		};
+        }
 
+        rpc AcceptReservationRequest(GetByIdRequest) returns(ReservationRequestResponse) {
+        	option (google.api.http) = {
+			put: "/reservationRequests/accept/{id}"
+		};
+        }
+
+        rpc CancelReservation(GetByIdRequest) returns(ReservationRequestResponse) {
+        	option (google.api.http) = {
+			put: "/reservation/cancel/{id}"
+		};
+        }
       
+}
+
+message ReservationRequestResponse{
+        Reservation reservation = 1;
 }
 
 message CreateReservationRequest{
