@@ -64,6 +64,21 @@ service AccommodationReservationService{
 		};
         }
       
+        rpc AlreadyReservedForDate(AlreadyReservedForDateRequest) returns(AlreadyReservedForDateResponse) {
+        	option (google.api.http) = {
+			put: "/reservation/alreadyReserved"
+                        body: "dateAndAccomodationDTO"
+		};
+        }
+
+}
+
+message AlreadyReservedForDateRequest{
+        DateAndAccomodationDTO dateAndAccomodationDTO = 1;
+}
+
+message AlreadyReservedForDateResponse{
+        bool alreadyReserved = 1;
 }
 
 message ReservationRequestResponse{
@@ -144,4 +159,10 @@ message Reservation {
                 Canceled = 1;
         }
         ReservationStatus Status = 3;
+}
+
+message DateAndAccomodationDTO{
+        string accommodationId = 1;
+        google.protobuf.Timestamp startDate = 2;
+        google.protobuf.Timestamp endDate = 3;
 }
