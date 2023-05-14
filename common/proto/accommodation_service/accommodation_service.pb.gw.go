@@ -65,19 +65,25 @@ func local_request_AccommodationService_CreateAcc_0(ctx context.Context, marshal
 
 }
 
-var (
-	filter_AccommodationService_GetAccommodationById_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_AccommodationService_GetAccommodationById_0(ctx context.Context, marshaler runtime.Marshaler, client AccommodationServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetByIdRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_AccommodationService_GetAccommodationById_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+
+	protoReq.Id, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
 	msg, err := client.GetAccommodationById(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -89,11 +95,21 @@ func local_request_AccommodationService_GetAccommodationById_0(ctx context.Conte
 	var protoReq GetByIdRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_AccommodationService_GetAccommodationById_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+
+	protoReq.Id, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
 	msg, err := server.GetAccommodationById(ctx, &protoReq)
@@ -101,18 +117,15 @@ func local_request_AccommodationService_GetAccommodationById_0(ctx context.Conte
 
 }
 
-var (
-	filter_AccommodationService_SearchAccommodations_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_AccommodationService_SearchAccommodations_0(ctx context.Context, marshaler runtime.Marshaler, client AccommodationServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq SearchRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_AccommodationService_SearchAccommodations_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.AccommodationSearchDTO); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -125,10 +138,11 @@ func local_request_AccommodationService_SearchAccommodations_0(ctx context.Conte
 	var protoReq SearchRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_AccommodationService_SearchAccommodations_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.AccommodationSearchDTO); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -137,18 +151,15 @@ func local_request_AccommodationService_SearchAccommodations_0(ctx context.Conte
 
 }
 
-var (
-	filter_AccommodationService_CreateAvailableDate_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_AccommodationService_CreateAvailableDate_0(ctx context.Context, marshaler runtime.Marshaler, client AccommodationServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateAvailableDateRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_AccommodationService_CreateAvailableDate_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.AvailableDate); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -161,10 +172,11 @@ func local_request_AccommodationService_CreateAvailableDate_0(ctx context.Contex
 	var protoReq CreateAvailableDateRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_AccommodationService_CreateAvailableDate_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.AvailableDate); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -225,13 +237,17 @@ func local_request_AccommodationService_GetAvailableDateById_0(ctx context.Conte
 
 }
 
-var (
-	filter_AccommodationService_UpdateAvailableDate_0 = &utilities.DoubleArray{Encoding: map[string]int{"id": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
 func request_AccommodationService_UpdateAvailableDate_0(ctx context.Context, marshaler runtime.Marshaler, client AccommodationServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateAvailableDateRequest
 	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.AvailableDatedto); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	var (
 		val string
@@ -248,13 +264,6 @@ func request_AccommodationService_UpdateAvailableDate_0(ctx context.Context, mar
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_AccommodationService_UpdateAvailableDate_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.UpdateAvailableDate(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -266,6 +275,14 @@ func local_request_AccommodationService_UpdateAvailableDate_0(ctx context.Contex
 	var protoReq UpdateAvailableDateRequest
 	var metadata runtime.ServerMetadata
 
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.AvailableDatedto); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
 	var (
 		val string
 		ok  bool
@@ -281,13 +298,6 @@ func local_request_AccommodationService_UpdateAvailableDate_0(ctx context.Contex
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_AccommodationService_UpdateAvailableDate_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.UpdateAvailableDate(ctx, &protoReq)
@@ -334,7 +344,7 @@ func RegisterAccommodationServiceHandlerServer(ctx context.Context, mux *runtime
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_service.AccommodationService/GetAccommodationById", runtime.WithHTTPPathPattern("/accommodation"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/accommodation_service.AccommodationService/GetAccommodationById", runtime.WithHTTPPathPattern("/accommodation/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -520,7 +530,7 @@ func RegisterAccommodationServiceHandlerClient(ctx context.Context, mux *runtime
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_service.AccommodationService/GetAccommodationById", runtime.WithHTTPPathPattern("/accommodation"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/accommodation_service.AccommodationService/GetAccommodationById", runtime.WithHTTPPathPattern("/accommodation/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -630,7 +640,7 @@ func RegisterAccommodationServiceHandlerClient(ctx context.Context, mux *runtime
 var (
 	pattern_AccommodationService_CreateAcc_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"accommodation"}, ""))
 
-	pattern_AccommodationService_GetAccommodationById_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"accommodation"}, ""))
+	pattern_AccommodationService_GetAccommodationById_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"accommodation", "id"}, ""))
 
 	pattern_AccommodationService_SearchAccommodations_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"accommodation", "search"}, ""))
 

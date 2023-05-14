@@ -16,18 +16,20 @@ service AccommodationService{
         }
         rpc GetAccommodationById(GetByIdRequest) returns(CreateAccommodationResponse) {
         	option (google.api.http) = {
-			get: "/accommodation"
+			get: "/accommodation/{id}"
 		};
         }
         rpc SearchAccommodations(SearchRequest) returns(SearchResponse) {
         	option (google.api.http) = {
 			post: "/accommodation/search"
+                        body: "accommodationSearchDTO"
 		};
         }
 
         rpc CreateAvailableDate(CreateAvailableDateRequest) returns(CreateAvailableDateResponse) {
         	option (google.api.http) = {
 			post: "/availableDate"
+                        body: "availableDate"
 		};
         }
 
@@ -40,6 +42,7 @@ service AccommodationService{
         rpc UpdateAvailableDate(UpdateAvailableDateRequest) returns(UpdateAvailableDateResponse) {
         	option (google.api.http) = {
 			put: "/availableDate/{id}"
+                        body: "availableDatedto"
 		};
         }
         
