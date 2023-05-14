@@ -105,7 +105,7 @@ message Accommodation {
         string address = 5;
         string benefits = 6;
         uint32 minGuests = 7;
-        uint32 maxGuests = 8;
+        uint32 maxGuests = 8; 
         bool automaticAccept = 9;
 }
 
