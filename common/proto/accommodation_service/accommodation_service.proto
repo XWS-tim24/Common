@@ -52,8 +52,16 @@ service AccommodationService{
                         body: "availableTimeSlotDTO"
 		};
         }
+        rpc GetAutomaticAcceptById(GetByIdRequest) returns(GetAutomaticAcceptByIdResponse) {
+        	option (google.api.http) = {
+			get: "/availableDate/getAutomaticAccept/{id}"
+		};
+        }
         
       
+}
+message GetAutomaticAcceptByIdResponse{
+        bool available = 1;
 }
 
 message TimeSlotAvailableRequest{
