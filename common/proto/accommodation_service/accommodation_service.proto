@@ -61,7 +61,7 @@ service AccommodationService{
       
 }
 message GetAutomaticAcceptByIdResponse{
-        bool available = 1;
+        bool automaticAccept = 1;
 }
 
 message TimeSlotAvailableRequest{
