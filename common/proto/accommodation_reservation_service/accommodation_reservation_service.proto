@@ -67,7 +67,7 @@ service AccommodationReservationService{
 }
 
 message ReservationRequestResponse{
-        Reservation reservation = 1;
+        ReservationRequest reservationRequest = 1;
 }
 
 message CreateReservationRequest{
