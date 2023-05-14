@@ -31,7 +31,7 @@ type AccommodationReservationServiceClient interface {
 	CreateRequest(ctx context.Context, in *CreateReservationRequestRequest, opts ...grpc.CallOption) (*CreateReservationRequestResponse, error)
 	DeleteReservationRequest(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationRequestResponse, error)
 	AcceptReservationRequest(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationRequestResponse, error)
-	CancelReservation(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationRequestResponse, error)
+	CancelReservation(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationResponse, error)
 }
 
 type accommodationReservationServiceClient struct {
@@ -123,8 +123,8 @@ func (c *accommodationReservationServiceClient) AcceptReservationRequest(ctx con
 	return out, nil
 }
 
-func (c *accommodationReservationServiceClient) CancelReservation(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationRequestResponse, error) {
-	out := new(ReservationRequestResponse)
+func (c *accommodationReservationServiceClient) CancelReservation(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationResponse, error) {
+	out := new(ReservationResponse)
 	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/CancelReservation", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -145,7 +145,7 @@ type AccommodationReservationServiceServer interface {
 	CreateRequest(context.Context, *CreateReservationRequestRequest) (*CreateReservationRequestResponse, error)
 	DeleteReservationRequest(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error)
 	AcceptReservationRequest(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error)
-	CancelReservation(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error)
+	CancelReservation(context.Context, *GetByIdRequest) (*ReservationResponse, error)
 	mustEmbedUnimplementedAccommodationReservationServiceServer()
 }
 
@@ -180,7 +180,7 @@ func (UnimplementedAccommodationReservationServiceServer) DeleteReservationReque
 func (UnimplementedAccommodationReservationServiceServer) AcceptReservationRequest(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AcceptReservationRequest not implemented")
 }
-func (UnimplementedAccommodationReservationServiceServer) CancelReservation(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error) {
+func (UnimplementedAccommodationReservationServiceServer) CancelReservation(context.Context, *GetByIdRequest) (*ReservationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelReservation not implemented")
 }
 func (UnimplementedAccommodationReservationServiceServer) mustEmbedUnimplementedAccommodationReservationServiceServer() {
