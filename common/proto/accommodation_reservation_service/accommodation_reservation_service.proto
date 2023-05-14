@@ -58,7 +58,7 @@ service AccommodationReservationService{
 		};
         }
 
-        rpc CancelReservation(GetByIdRequest) returns(ReservationRequestResponse) {
+        rpc CancelReservation(GetByIdRequest) returns(ReservationResponse) {
         	option (google.api.http) = {
 			put: "/reservation/cancel/{id}"
 		};
@@ -68,6 +68,10 @@ service AccommodationReservationService{
 
 message ReservationRequestResponse{
         ReservationRequest reservationRequest = 1;
+}
+
+message ReservationResponse{
+        Reservation reservation = 1;
 }
 
 message CreateReservationRequest{
