@@ -60,12 +60,13 @@ service AccommodationReservationService{
 
         rpc DenyReservationRequest(GetByIdRequest) returns(ReservationRequestResponse) {
           option (google.api.http) = {
-      put: "/reservationRequests/deny/{id}"
-    };
-  }
+                        put: "/reservationRequests/deny/{id}"
+                };
+        }
         rpc CancelReservation(GetByIdAndUserIdRequest) returns(ReservationResponse) {
         	option (google.api.http) = {
 			put: "/reservations/cancel/{id}"
+                        body: "userId"
 		};
         }
       
