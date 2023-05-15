@@ -65,17 +65,41 @@ service AccommodationReservationService{
   }
         rpc CancelReservation(GetByIdAndUserIdRequest) returns(ReservationResponse) {
         	option (google.api.http) = {
-			put: "/reservation/cancel/{id}"
+			put: "/reservations/cancel/{id}"
 		};
         }
       
         rpc AlreadyReservedForDate(AlreadyReservedForDateRequest) returns(AlreadyReservedForDateResponse) {
         	option (google.api.http) = {
-			put: "/reservation/alreadyReserved"
+			put: "/reservations/alreadyReserved"
                         body: "dateAndAccomodationDTO"
 		};
         }
 
+  rpc GetAllReservations(GetAllRequest) returns(GetAllReservationsResponse) {
+    option (google.api.http) = {
+      get: "/reservations"
+    };
+  }
+
+  rpc GetAllRequests(GetAllRequest) returns(GetAllRequestsResponse) {
+    option (google.api.http) = {
+      get: "/reservationRequests"
+    };
+  }
+
+}
+
+message GetAllRequest {
+}
+
+message GetAllReservationsResponse {
+  repeated Reservation reservations = 1;
+}
+
+
+message GetAllRequestsResponse {
+  repeated ReservationRequest reservationRequests = 1;
 }
 
 message AlreadyReservedForDateRequest{

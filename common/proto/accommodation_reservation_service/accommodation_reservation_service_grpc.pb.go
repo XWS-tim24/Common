@@ -34,6 +34,8 @@ type AccommodationReservationServiceClient interface {
 	DenyReservationRequest(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationRequestResponse, error)
 	CancelReservation(ctx context.Context, in *GetByIdAndUserIdRequest, opts ...grpc.CallOption) (*ReservationResponse, error)
 	AlreadyReservedForDate(ctx context.Context, in *AlreadyReservedForDateRequest, opts ...grpc.CallOption) (*AlreadyReservedForDateResponse, error)
+	GetAllReservations(ctx context.Context, in *GetAllRequest, opts ...grpc.CallOption) (*GetAllReservationsResponse, error)
+	GetAllRequests(ctx context.Context, in *GetAllRequest, opts ...grpc.CallOption) (*GetAllRequestsResponse, error)
 }
 
 type accommodationReservationServiceClient struct {
@@ -152,6 +154,24 @@ func (c *accommodationReservationServiceClient) AlreadyReservedForDate(ctx conte
 	return out, nil
 }
 
+func (c *accommodationReservationServiceClient) GetAllReservations(ctx context.Context, in *GetAllRequest, opts ...grpc.CallOption) (*GetAllReservationsResponse, error) {
+	out := new(GetAllReservationsResponse)
+	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/GetAllReservations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accommodationReservationServiceClient) GetAllRequests(ctx context.Context, in *GetAllRequest, opts ...grpc.CallOption) (*GetAllRequestsResponse, error) {
+	out := new(GetAllRequestsResponse)
+	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/GetAllRequests", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccommodationReservationServiceServer is the server API for AccommodationReservationService service.
 // All implementations must embed UnimplementedAccommodationReservationServiceServer
 // for forward compatibility
@@ -168,6 +188,8 @@ type AccommodationReservationServiceServer interface {
 	DenyReservationRequest(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error)
 	CancelReservation(context.Context, *GetByIdAndUserIdRequest) (*ReservationResponse, error)
 	AlreadyReservedForDate(context.Context, *AlreadyReservedForDateRequest) (*AlreadyReservedForDateResponse, error)
+	GetAllReservations(context.Context, *GetAllRequest) (*GetAllReservationsResponse, error)
+	GetAllRequests(context.Context, *GetAllRequest) (*GetAllRequestsResponse, error)
 	mustEmbedUnimplementedAccommodationReservationServiceServer()
 }
 
@@ -210,6 +232,12 @@ func (UnimplementedAccommodationReservationServiceServer) CancelReservation(cont
 }
 func (UnimplementedAccommodationReservationServiceServer) AlreadyReservedForDate(context.Context, *AlreadyReservedForDateRequest) (*AlreadyReservedForDateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AlreadyReservedForDate not implemented")
+}
+func (UnimplementedAccommodationReservationServiceServer) GetAllReservations(context.Context, *GetAllRequest) (*GetAllReservationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllReservations not implemented")
+}
+func (UnimplementedAccommodationReservationServiceServer) GetAllRequests(context.Context, *GetAllRequest) (*GetAllRequestsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllRequests not implemented")
 }
 func (UnimplementedAccommodationReservationServiceServer) mustEmbedUnimplementedAccommodationReservationServiceServer() {
 }
@@ -441,6 +469,42 @@ func _AccommodationReservationService_AlreadyReservedForDate_Handler(srv interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccommodationReservationService_GetAllReservations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccommodationReservationServiceServer).GetAllReservations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/GetAllReservations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccommodationReservationServiceServer).GetAllReservations(ctx, req.(*GetAllRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccommodationReservationService_GetAllRequests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccommodationReservationServiceServer).GetAllRequests(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/GetAllRequests",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccommodationReservationServiceServer).GetAllRequests(ctx, req.(*GetAllRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AccommodationReservationService_ServiceDesc is the grpc.ServiceDesc for AccommodationReservationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -495,6 +559,14 @@ var AccommodationReservationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AlreadyReservedForDate",
 			Handler:    _AccommodationReservationService_AlreadyReservedForDate_Handler,
+		},
+		{
+			MethodName: "GetAllReservations",
+			Handler:    _AccommodationReservationService_GetAllReservations_Handler,
+		},
+		{
+			MethodName: "GetAllRequests",
+			Handler:    _AccommodationReservationService_GetAllRequests_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
