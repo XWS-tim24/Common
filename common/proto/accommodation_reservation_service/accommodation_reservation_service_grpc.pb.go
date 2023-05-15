@@ -31,7 +31,8 @@ type AccommodationReservationServiceClient interface {
 	CreateRequest(ctx context.Context, in *CreateReservationRequestRequest, opts ...grpc.CallOption) (*CreateReservationRequestResponse, error)
 	DeleteReservationRequest(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationRequestResponse, error)
 	AcceptReservationRequest(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationRequestResponse, error)
-	CancelReservation(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationResponse, error)
+	DenyReservationRequest(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationRequestResponse, error)
+	CancelReservation(ctx context.Context, in *GetByIdAndUserIdRequest, opts ...grpc.CallOption) (*ReservationResponse, error)
 	AlreadyReservedForDate(ctx context.Context, in *AlreadyReservedForDateRequest, opts ...grpc.CallOption) (*AlreadyReservedForDateResponse, error)
 }
 
@@ -124,7 +125,16 @@ func (c *accommodationReservationServiceClient) AcceptReservationRequest(ctx con
 	return out, nil
 }
 
-func (c *accommodationReservationServiceClient) CancelReservation(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationResponse, error) {
+func (c *accommodationReservationServiceClient) DenyReservationRequest(ctx context.Context, in *GetByIdRequest, opts ...grpc.CallOption) (*ReservationRequestResponse, error) {
+	out := new(ReservationRequestResponse)
+	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/DenyReservationRequest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accommodationReservationServiceClient) CancelReservation(ctx context.Context, in *GetByIdAndUserIdRequest, opts ...grpc.CallOption) (*ReservationResponse, error) {
 	out := new(ReservationResponse)
 	err := c.cc.Invoke(ctx, "/accommodation_reservation_service.AccommodationReservationService/CancelReservation", in, out, opts...)
 	if err != nil {
@@ -155,7 +165,8 @@ type AccommodationReservationServiceServer interface {
 	CreateRequest(context.Context, *CreateReservationRequestRequest) (*CreateReservationRequestResponse, error)
 	DeleteReservationRequest(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error)
 	AcceptReservationRequest(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error)
-	CancelReservation(context.Context, *GetByIdRequest) (*ReservationResponse, error)
+	DenyReservationRequest(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error)
+	CancelReservation(context.Context, *GetByIdAndUserIdRequest) (*ReservationResponse, error)
 	AlreadyReservedForDate(context.Context, *AlreadyReservedForDateRequest) (*AlreadyReservedForDateResponse, error)
 	mustEmbedUnimplementedAccommodationReservationServiceServer()
 }
@@ -191,7 +202,10 @@ func (UnimplementedAccommodationReservationServiceServer) DeleteReservationReque
 func (UnimplementedAccommodationReservationServiceServer) AcceptReservationRequest(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AcceptReservationRequest not implemented")
 }
-func (UnimplementedAccommodationReservationServiceServer) CancelReservation(context.Context, *GetByIdRequest) (*ReservationResponse, error) {
+func (UnimplementedAccommodationReservationServiceServer) DenyReservationRequest(context.Context, *GetByIdRequest) (*ReservationRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DenyReservationRequest not implemented")
+}
+func (UnimplementedAccommodationReservationServiceServer) CancelReservation(context.Context, *GetByIdAndUserIdRequest) (*ReservationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelReservation not implemented")
 }
 func (UnimplementedAccommodationReservationServiceServer) AlreadyReservedForDate(context.Context, *AlreadyReservedForDateRequest) (*AlreadyReservedForDateResponse, error) {
@@ -373,8 +387,26 @@ func _AccommodationReservationService_AcceptReservationRequest_Handler(srv inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AccommodationReservationService_CancelReservation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AccommodationReservationService_DenyReservationRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccommodationReservationServiceServer).DenyReservationRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/DenyReservationRequest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccommodationReservationServiceServer).DenyReservationRequest(ctx, req.(*GetByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccommodationReservationService_CancelReservation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByIdAndUserIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -386,7 +418,7 @@ func _AccommodationReservationService_CancelReservation_Handler(srv interface{},
 		FullMethod: "/accommodation_reservation_service.AccommodationReservationService/CancelReservation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AccommodationReservationServiceServer).CancelReservation(ctx, req.(*GetByIdRequest))
+		return srv.(AccommodationReservationServiceServer).CancelReservation(ctx, req.(*GetByIdAndUserIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -451,6 +483,10 @@ var AccommodationReservationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AcceptReservationRequest",
 			Handler:    _AccommodationReservationService_AcceptReservationRequest_Handler,
+		},
+		{
+			MethodName: "DenyReservationRequest",
+			Handler:    _AccommodationReservationService_DenyReservationRequest_Handler,
 		},
 		{
 			MethodName: "CancelReservation",
