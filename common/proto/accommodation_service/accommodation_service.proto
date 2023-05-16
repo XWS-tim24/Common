@@ -25,6 +25,7 @@ service AccommodationService{
                         body: "accommodationSearchDTO"
 		};
         }
+        
 
         rpc CreateAvailableDate(CreateAvailableDateRequest) returns(CreateAvailableDateResponse) {
         	option (google.api.http) = {
@@ -108,9 +109,27 @@ message GetByIdRequest{
 message SearchRequest{
         AccommodationSearchDTO accommodationSearchDTO = 1;
 }
+
 message SearchResponse{
-        repeated Accommodation accommodation = 1;
+  repeated AccommodationDTOForSearchResponse accommodationDto = 1;
 }
+message AccommodationDTOForSearchResponse{
+  string id = 1;
+  string name = 3;
+  string city = 4;
+  string address = 5;
+  string benefits = 6;
+  uint32 minGuests = 7;
+  uint32 maxGuests = 8;
+  uint32 price = 9;
+  uint32 totalPrice = 10;
+  enum PricingType{
+    Per_Guest = 0;
+    Per_Accommodation = 1;
+  }
+  PricingType pricingType = 11;
+}
+
 
 message CreateAvailableDateRequest{
         AvailableDate availableDate = 1;
