@@ -107,7 +107,7 @@ message GetByIdRequest{
 }
 
 message SearchRequest{
-        AccommodationSearchDTO accommodationSearchDTO = 1;
+        AccommodationSearchDTO accommodationSearchDTO = 1; 
 }
 
 message SearchResponse{
