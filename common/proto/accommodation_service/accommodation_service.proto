@@ -111,7 +111,7 @@ message SearchRequest{
 }
 
 message SearchResponse{
-  repeated AccommodationDTOForSearchResponse accommodationDto = 1;
+  repeated AccommodationDTOForSearchResponse accommodationDto = 1; 
 }
 message AccommodationDTOForSearchResponse{
   string id = 1;
